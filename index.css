@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body>section {
+    max-width: 1280px;
+    margin: auto;
+    height: 100vh;
+}
+
+#loginPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 750px;
+    border: 1px solid #004E8F;
+    border-radius: 3px 3px 0 0;
+}
+
+.login-box>form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.login-box>form>label {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.login-box>form>input {
+    height: 40px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 0 10px 0 10px;
+}
+
+.login-box>form>input:nth-child(2) {
+    margin-bottom: 24px;
+}
+
+.login-box>form>input:nth-child(4) {
+    margin-bottom: 16px;
+}
+
+.cabecalho {
+    padding: 16px 0;
+    background-color: #004E8F;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.rodape {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    width: 750px;
+}
+
+.rodape a {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A75C1
+}
+
+.primary-button {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    background: #004E8F;
+    border-radius: 4px;
+    color: #fff;
+    border: none;
+    padding: 8px 0;
+    cursor: pointer;
+}
