@@ -107,7 +107,7 @@ label {
     width: 100%;
 }
 
-.cabecalho h1 {
+.cabecalho h1, .cabecalho h2 {
     color: white;
     font-weight: 600;
     font-size: 16px;
@@ -158,4 +158,53 @@ label {
     padding: 8px 0;
     cursor: pointer;
     width: 166px;
+}
+
+.listas-homepage>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 13px;
+    background: #fff;
+    height: 60px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 0 10px 0 10px;
+}
+
+.listas-homepage>div>div,
+.descricao-vaga>div {
+    display: flex;
+    align-items: center;
+
+}
+
+.listas-homepage h1,
+.listas-homepage p,
+.descricao-vaga h1 {
+    font-size: 20px;
+    padding: 0px 5px;
+}
+
+.descricao-vaga p {
+    font-size: 20px;
+}
+
+.descricao-vaga {
+    border: 1px solid #004E8F;
+    border-radius: 3px;
+}
+
+.content h1 {
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.cabecalho-detalhe-vaga{
+    display: flex;   
+}
+
+.cabecalho-detalhe-vaga h2 {
+    margin-right: 200px;
+    padding-left: 30px;    
 }
