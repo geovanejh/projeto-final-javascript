@@ -11,13 +11,13 @@
 body>section {
     max-width: 1280px;
     margin: auto;
-    height: 100vh;
-}
-
-#loginPage {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#loginPage {
     flex-direction: column;
 }
 
@@ -27,6 +27,20 @@ body>section {
     justify-content: space-between;
     align-items: center;
     width: 750px;
+    border: 1px solid #004E8F;
+    border-radius: 3px 3px 0 0;
+}
+
+.content {
+    padding: 32px;
+}
+
+.content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
     border: 1px solid #004E8F;
     border-radius: 3px 3px 0 0;
 }
