@@ -17,6 +17,21 @@ body>section {
     align-items: center;
 }
 
+input,
+select {
+    background: #fff;
+    height: 40px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 0 10px 0 10px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+
 #loginPage {
     flex-direction: column;
 }
@@ -31,8 +46,40 @@ body>section {
     border-radius: 3px 3px 0 0;
 }
 
+.login-content {
+    padding: 32px;
+}
+
+.login-content>form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-content>form>button {
+    width: 100%;
+}
+
+.login-content>form>div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
 .content {
     padding: 32px;
+    width: 100%;
+}
+
+.content>form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.content>form>div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
 }
 
 .content-box {
@@ -45,53 +92,46 @@ body>section {
     border-radius: 3px 3px 0 0;
 }
 
-.login-box>form {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-}
-
-.login-box>form>label {
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.login-box>form>input {
-    height: 40px;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    padding: 0 10px 0 10px;
-}
-
-.login-box>form>input:nth-child(2) {
+.login-box form>input:nth-child(2) {
     margin-bottom: 24px;
 }
 
-.login-box>form>input:nth-child(4) {
+.login-box form>input:nth-child(4) {
     margin-bottom: 16px;
 }
 
 .cabecalho {
     padding: 16px 0;
     background-color: #004E8F;
-    font-weight: 600;
-    color: white;
     text-align: center;
     width: 100%;
 }
 
-.rodape {
+.cabecalho h1 {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.rodape-login {
     margin-top: 16px;
     display: flex;
     justify-content: space-between;
     width: 750px;
 }
 
-.rodape a {
+.rodape-login a {
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
     color: #1A75C1
+}
+
+.rodape {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .primary-button {
@@ -104,4 +144,18 @@ body>section {
     border: none;
     padding: 8px 0;
     cursor: pointer;
+    width: 166px;
+}
+
+.secondary-button {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    background: #1A75C1;
+    border-radius: 4px;
+    color: #fff;
+    border: none;
+    padding: 8px 0;
+    cursor: pointer;
+    width: 166px;
 }

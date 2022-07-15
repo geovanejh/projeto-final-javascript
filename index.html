@@ -15,15 +15,17 @@
             <div class="cabecalho">
                 <h1>Login do Sistema</h1>
             </div>
-            <form>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
-                <label for="senha">Senha</label>
-                <input type="password" name="senha" id="senha">
-                <button class="primary-button">Login</button>
-            </form>
+            <div class="login-content">
+                <form>
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha">
+                    <button class="primary-button">Login</button>
+                </form>
+            </div>
         </div>
-        <div class="rodape">
+        <div class="rodape-login">
             <a href="#">Esqueceu a senha?</a>
             <a href="#">Não possui cadastro?</a>
         </div>
@@ -35,7 +37,36 @@
                 <h1>Cadastro</h1>
             </div>
             <div class="content">
-                <span>O CONTEÚDO VAI AQUI</span>
+                <form>
+                    <div>
+                        <label for="tipoCadastro">Tipo de Usuário</label>
+                        <select name="tipoCadastro" id="tipoCadastro">
+                            <option value="Trabalhador">Trabalhador</option>
+                            <option value="Recrutador">Recrutador</option>
+                            <option value="" selected></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="nomeCadastro">Nome Completo*</label>
+                        <input type="text" name="nomeCadastro" id="nomeCadastro">
+                    </div>
+                    <div>
+                        <label for="dataCadastro">Data de Nascimento*</label>
+                        <input type="text" name="dataCadastro" id="dataCadastro">
+                    </div>
+                    <div>
+                        <label for="EmailCadastro">Email*</label>
+                        <input type="text" name="EmailCadastro" id="EmailCadastro">
+                    </div>
+                    <div>
+                        <label for="senhaCadastro">Senha*</label>
+                        <input type="password" name="senhaCadastro" id="senhaCadastro">
+                    </div>
+                </form>
+                <div class="rodape">
+                    <button class="secondary-button">Voltar</button>
+                    <button class="primary-button">Cadastrar</button>
+                </div>
             </div>
         </div>
     </section>
