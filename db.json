@@ -2,13 +2,18 @@
   "usuarios": [
     {
       "tipo": "Colaborador",
-      "nome": "Geovane Jadiel Hartmann ",
-      "dataNascimento": "2002-03-29T03:00:00.000Z",
-      "email": "geovanehartmann@gmail.com",
-      "senha": "eE2@a11111",
+      "nome": "Geovane Jaiel Hartmann ",
+      "dataNascimento": "2000-12-10T02:00:00.000Z",
+      "email": "colaborador@gmail.com",
+      "senha": "1A@aaaaa",
       "candidaturas": [
         {
           "idVaga": 1,
+          "idCandidato": 1,
+          "reprovado": false
+        },
+        {
+          "idVaga": 2,
           "idCandidato": 1,
           "reprovado": false
         }
@@ -17,65 +22,83 @@
     },
     {
       "tipo": "Colaborador",
-      "nome": "Geovane Jadiel Hartmann ",
-      "dataNascimento": "2002-03-29T03:00:00.000Z",
-      "email": "colaborador@gmail.com",
-      "senha": "eE2@a11111",
-      "candidaturas": [],
+      "nome": "João Gomes",
+      "dataNascimento": "1999-10-10T02:00:00.000Z",
+      "email": "colaborador2@gmail.com",
+      "senha": "1A@aaaaa",
+      "candidaturas": [
+        {
+          "idVaga": 2,
+          "idCandidato": 2,
+          "reprovado": true
+        }
+      ],
       "id": 2
     },
     {
       "tipo": "Colaborador",
-      "nome": "Geovane Jadiel Hartmann ",
-      "dataNascimento": "2002-03-29T03:00:00.000Z",
-      "email": "geovanehartmann@gmail.com",
-      "senha": "EeE?@3adsa1",
-      "candidaturas": [],
+      "nome": "Geovane Jaiel Hartmann ",
+      "dataNascimento": "2002-06-10T02:00:00.000Z",
+      "email": "colaborador3@gmail.com",
+      "senha": "1A@aaaaa",
+      "candidaturas": [
+        {
+          "idVaga": 1,
+          "idCandidato": 3,
+          "reprovado": false
+        }
+      ],
       "id": 3
     },
     {
-      "tipo": "Colaborador",
+      "tipo": "Recrutador",
       "nome": "Geovane Jadiel Hartmann ",
       "dataNascimento": "2002-03-29T03:00:00.000Z",
-      "email": "geovanehartmann@gmail.com",
-      "senha": "Edwadw@1@a",
+      "email": "recrutador@gmail.com",
+      "senha": "1A@aaaaa",
       "candidaturas": [],
       "id": 4
-    },
-    {
-      "tipo": "Colaborador",
-      "nome": "Geovane Jadiel Hartmann ",
-      "dataNascimento": "2002-03-29T03:00:00.000Z",
-      "email": "geovanehartmann@gmail.com",
-      "senha": "allUsers = users.data1",
-      "candidaturas": [],
-      "id": 5
-    },
-    {
-      "tipo": "Recrutador",
-      "nome": "Recrutador ",
-      "dataNascimento": "0200-03-29T03:06:28.000Z",
-      "email": "recrutador@gmail.com",
-      "senha": "allUsers = users.dat1a",
-      "candidaturas": [],
-      "id": 6
     }
   ],
   "vagas": [
     {
-      "titulo": "1111111",
-      "remuneracao": "R$ 1250",
-      "candidatos": [],
-      "descricao": "2222222222",
-      "id": 12
+      "titulo": "Pescador",
+      "remuneracao": "R$ 2000",
+      "candidatos": [
+        {
+          "idCandidato": 1,
+          "reprovado": false
+        },
+        {
+          "idCandidato": 3,
+          "reprovado": false
+        }
+      ],
+      "descricao": "Pescar",
+      "id": 1
     },
     {
-      "titulo": "TESTE",
-      "remuneracao": "R$ 1540",
+      "titulo": "Marinheiro",
+      "remuneracao": "R$ 3000",
+      "candidatos": [
+        {
+          "idCandidato": 1,
+          "reprovado": false
+        },
+        {
+          "idCandidato": 2,
+          "reprovado": true
+        }
+      ],
+      "descricao": "Cuidar do navio",
+      "id": 2
+    },
+    {
+      "titulo": "Capitão",
+      "remuneracao": "R$ 4000",
       "candidatos": [],
-      "descricao": "TESTE DESCRIÇÃO",
-      "id": 13
+      "descricao": "Comandar o navio",
+      "id": 3
     }
-  ],
-  "candidaturas": []
+  ]
 }

@@ -68,6 +68,41 @@ class Validacoes {
         return false
     }
 
+    ehNomeInvalido(string) {
+        if (!string.includes(' ')) {
+            this.erro = `Por favor, informe seu nome completo!`
+            return true
+        }
+
+        let temNumero;
+        string.split(' ').forEach(e => {
+            e.split('').some(char => {
+                if (char.toLowerCase() === char.toUpperCase()) {
+                    this.erro = 'O nome informado está incorreto.'
+                    temNumero = true
+                }
+            })
+        })
+        return temNumero
+    }
+
+    ehDataInvalida(data) {
+        if (data.length < 10) {
+            this.erro = `A data informada está incorreta.`
+            return true
+        }
+        let temLetra = false, dataIncorreta
+        console.log(data.split('/')[0])
+
+        data.split('/')[0].split('').some(caracter => isNaN(parseInt(caracter))) || data.split('/')[1].split('').some(caracter => isNaN(parseInt(caracter))) || data.split('/')[2].split('').some(caracter => isNaN(parseInt(caracter))) ? temLetra = true : ''
+        data.split('/')[0] <= 0 || data.split('/')[0] > 31 || data.split('/')[1] < 1 || data.split('/')[1] > 12 || data.split('/')[2].length < 4 ? dataIncorreta = true : dataIncorreta = false
+
+        if (temLetra || dataIncorreta) {
+            this.erro = `A data informada está incorreta!`
+        }
+        return temLetra || dataIncorreta
+    }
+
     emailEhValido(email) {
         const emailSeparadoPorArroba = email.split('@');
         const possuiUmArroba = emailSeparadoPorArroba.length === 2;
@@ -99,7 +134,6 @@ class Validacoes {
 
         const possuiOitoCaracteres = senha.length >= 8;
 
-        this.erro = ''
         this.erro = `A senha informada está incorreta: 
         `
         !possuiOitoCaracteres ? this.erro += `- A senha precisa ter ao menos 8 caracteres
@@ -526,12 +560,13 @@ const mudaTela = (tela) => {
 
 const cadastraColaborador = async (e) => {
     e.preventDefault()
+
     const tipo = document.getElementById('tipoCadastro').value
-    const nome = document.getElementById('nomeCadastro').value
+    const nome = document.getElementById('nomeCadastro').value.trim()
     const data = document.getElementById('dataCadastro').value
     const email = document.getElementById('emailCadastro').value
     const senha = document.getElementById('senhaCadastro').value
-    if (valida.ehVazio(tipo) || valida.ehVazio(nome) || valida.ehVazio(data) || valida.ehVazio(email) || valida.ehVazio(senha) || !valida.emailEhValido(email) || !valida.senhaValida(senha)) {
+    if (valida.ehVazio(tipo) || valida.ehVazio(nome) || valida.ehVazio(data) || valida.ehVazio(email) || valida.ehVazio(senha) || valida.ehNomeInvalido(nome) || valida.ehDataInvalida(data) || !valida.emailEhValido(email) || !valida.senhaValida(senha)) {
         alert(valida.erro)
         return
     }
@@ -555,7 +590,7 @@ const cadastraColaborador = async (e) => {
         console.log(e);
     }
 
-    for (item of allUsers) {
+    for (let item of allUsers) {
         if (item.email === email) {
             alert(`Email já cadastrado no sistema, tente outro.`)
             return
