@@ -145,6 +145,10 @@ label {
     color: #1A75C1
 }
 
+.rodape-login a:hover {
+    text-decoration: underline;
+}
+
 .rodape {
     margin-top: 28px;
     display: flex;
@@ -279,9 +283,9 @@ label {
     border-bottom: 1px solid #004E8F;
 }
 
-.teste {
+.centraliza {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
 }
 
 .reprovar-button {
@@ -311,4 +315,26 @@ label {
 
 .candidato-reprovado {
     color: red !important;
+}
+
+.button-disabled {
+    width: 206px;
+    background: #A6A6A6 !important;
+    cursor: not-allowed;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.w-206 {
+    width: 206px !important;
+}
+
+.detalhes-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 900px;
+    margin-top: 24px;
 }

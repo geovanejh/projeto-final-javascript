@@ -1,0 +1,17 @@
+Esqueceu a senha:
+    - Campo vazio
+    - Validar se o email digitado existe.
+
+Tela de cadastro:
+    - Campos vazios
+    - Nome para title case
+    - Formato da data 00/00/0000
+    - Email em formato correto.
+    - Senha: caracter especial, letra maiúscula, letra minúscula e número, caracteres > 8
+
+Login:
+    - Campos vazios
+
+Cadastro vaga:
+    - Campos vazios
+    - Remuneração: valor numérico > 1200

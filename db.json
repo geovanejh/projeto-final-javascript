@@ -26,9 +26,14 @@
       "senha": "1",
       "candidaturas": [
         {
-          "idVaga": 3,
+          "idVaga": 1,
           "idCandidato": 3,
           "reprovado": true
+        },
+        {
+          "idVaga": 3,
+          "idCandidato": 3,
+          "reprovado": false
         }
       ],
       "id": 3
@@ -77,10 +82,19 @@
         {
           "idVaga": 1,
           "idCandidato": 6,
-          "reprovado": false
+          "reprovado": true
         }
       ],
       "id": 6
+    },
+    {
+      "tipo": "",
+      "nome": "",
+      "dataNascimento": "",
+      "email": "",
+      "senha": "",
+      "candidaturas": [],
+      "id": 7
     }
   ],
   "vagas": [
@@ -90,7 +104,11 @@
       "candidatos": [
         {
           "idCandidato": 6,
-          "reprovado": false
+          "reprovado": true
+        },
+        {
+          "idCandidato": 3,
+          "reprovado": true
         }
       ],
       "descricao": "DESCRIÇÃO UM",
@@ -113,11 +131,11 @@
       "remuneracao": "1800",
       "candidatos": [
         {
-          "idCandidato": 3,
-          "reprovado": true
+          "idCandidato": 6,
+          "reprovado": false
         },
         {
-          "idCandidato": 6,
+          "idCandidato": 3,
           "reprovado": false
         }
       ],
@@ -125,16 +143,25 @@
       "id": 3
     },
     {
-      "titulo": "TESTE 4",
-      "remuneracao": "1800",
-      "candidatos": [
-        {
-          "idCandidato": 4,
-          "reprovado": false
-        }
-      ],
-      "descricao": "DESCRIÇÃO UM",
+      "titulo": "TESTE",
+      "remuneracao": "TESTE",
+      "candidatos": [],
+      "descricao": "TESTE",
       "id": 4
+    },
+    {
+      "titulo": "",
+      "remuneracao": "",
+      "candidatos": [],
+      "descricao": "2222222222",
+      "id": 5
+    },
+    {
+      "titulo": "",
+      "remuneracao": "",
+      "candidatos": [],
+      "descricao": "",
+      "id": 6
     }
   ],
   "candidaturas": []

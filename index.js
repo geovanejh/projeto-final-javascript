@@ -5,10 +5,10 @@ let allUsers
 class Usuario {
     tipo;
     nome;
-    dataNascimento; // salvar como objeto Date e não como string '10/05/1990' por exemplo
+    dataNascimento;
     email;
     senha;
-    candidaturas = []; // lista de Candidatura
+    candidaturas = [];
 
     constructor(tipo, nome, data, email, senha) {
         this.tipo = tipo;
@@ -22,7 +22,7 @@ class Usuario {
 class Candidatura {
     idVaga;
     idCandidato;
-    reprovado = false; // true or false
+    reprovado = false;
 
     constructor(idVaga, idCandidato) {
         this.idVaga = idVaga
@@ -43,13 +43,24 @@ class Vaga {
     }
 }
 
+const limpaCampos = () => {
+    document.getElementById('email').value = ''
+    document.getElementById('senha').value = ''
+    document.getElementById('nomeCadastro').value = ''
+    document.getElementById('dataCadastro').value = ''
+    document.getElementById('emailCadastro').value = ''
+    document.getElementById('senhaCadastro').value = ''
+    document.getElementById('tituloVaga').value = ''
+    document.getElementById('descricaoVaga').value = ''
+    document.getElementById('remuneracaoVaga').value = ''
+}
+
 const redefinirSenha = async () => {
     const email = prompt(`Digite o seu email`)
 
     try {
         const users = await axios.get(`${BASE_URL}/usuarios`);
         const user = users.data.find(e => {
-            console.log('e =>', e)
             return e.email === email
         })
 
@@ -102,8 +113,6 @@ const descandidatar = async (vaga) => {
     const cancelar = vaga.candidatos.filter(e => e.idCandidato !== userLogado.id)
     userLogado.candidaturas = userLogado.candidaturas.filter(e => e.idVaga !== vaga.id)
     vaga.candidatos = cancelar
-    console.log('cancelar => ', cancelar)
-    console.log('userLogado => ', userLogado)
 
     try {
         await axios.put(`${BASE_URL}/usuarios/${userLogado.id}`, userLogado);
@@ -128,15 +137,12 @@ const candidatar = async (vaga) => {
         return
     }
 
-    console.log(vaga)
     const candidatura = new Candidatura(vaga.id, userLogado.id)
     userLogado.candidaturas.push(candidatura)
     vaga.candidatos.push({
         idCandidato: candidatura.idCandidato,
         reprovado: candidatura.reprovado
     })
-
-    console.log(userLogado)
 
     try {
         await axios.put(`${BASE_URL}/usuarios/${userLogado.id}`, userLogado);
@@ -174,8 +180,6 @@ const excluiVaga = async (vaga) => {
 }
 
 const reprovaCandidato = async (vaga, idCandidato) => {
-    console.log(vaga)
-    console.log(idCandidato)
 
     vaga.candidatos.forEach(e => {
         if (e.idCandidato === idCandidato) {
@@ -211,9 +215,7 @@ const reprovaCandidato = async (vaga, idCandidato) => {
 }
 
 const detalheVaga = async (vaga) => {
-    console.log('vaga => ', vaga)
     mudaTela('detalhes')
-    console.log(vaga)
     const divDescricao = document.getElementById('divDescricaoVaga')
     divDescricao.textContent = ''
     const ptitulo = document.createElement('p')
@@ -262,7 +264,6 @@ const detalheVaga = async (vaga) => {
         li.append(pUser, pNascimento)
         const buttonReprovar = document.createElement('button')
         if (userLogado.tipo === 'Recrutador') {
-            console.log('E => ', e)
             if (e.reprovado === true) {
                 buttonReprovar.classList.add('reprovado-button')
             } else {
@@ -270,7 +271,6 @@ const detalheVaga = async (vaga) => {
                 buttonReprovar.addEventListener('click', () => reprovaCandidato(vaga, e.idCandidato))
             }
             buttonReprovar.textContent = 'Reprovar'
-            console.log(e)
             li.appendChild(buttonReprovar)
         }
 
@@ -287,13 +287,20 @@ const detalheVaga = async (vaga) => {
     divButtons.appendChild(buttonVoltar)
 
     const souCandidato = vaga.candidatos.some(e => e.idCandidato === userLogado.id)
+    const fuiReprovado = vaga.candidatos.some(e => {
+        if (e.reprovado === true && userLogado.tipo === 'Colaborador' && e.idCandidato === userLogado.id) {
+            return true
+        }
+    })
+
+    const buttonCandidatura = document.createElement('button')
 
     if (userLogado.tipo === 'Colaborador') {
-        const buttonCandidatura = document.createElement('button')
         buttonCandidatura.classList.add('primary-button')
         if (souCandidato) {
             buttonCandidatura.textContent = `Cancelar Candidatura`
-            buttonCandidatura.addEventListener('click', () => descandidatar(vaga))
+            buttonCandidatura.classList.add('w-206')
+            fuiReprovado ? buttonCandidatura.classList.add('button-disabled') : buttonCandidatura.addEventListener('click', () => descandidatar(vaga))
         } else {
             buttonCandidatura.textContent = `Candidatar-se`
             buttonCandidatura.addEventListener('click', () => candidatar(vaga))
@@ -318,9 +325,7 @@ const cadastraVaga = async () => {
     try {
         await axios.post(`${BASE_URL}/vagas`, vaga);
         console.log('Vaga cadastrada com sucesso!');
-        document.getElementById('tituloVaga').value = ''
-        document.getElementById('descricaoVaga').value = ''
-        document.getElementById('remuneracaoVaga').value = ''
+        limpaCampos()
     }
     catch (e) {
         console.log(e);
@@ -343,7 +348,6 @@ const login = async (e) => {
                 return true
             };
         })
-        console.log(userLogado)
         loginValido ? mudaTela('home') : alert(`Login ou senha incorretos!`)
     }
     catch (e) {
@@ -365,20 +369,29 @@ const mudaTela = (tela) => {
 
     switch (tela) {
         case 'login':
+            limpaCampos()
             login.style.display = 'flex'
             break;
         case 'cadastro':
+            limpaCampos()
             cadastro.style.display = 'flex'
             break;
         case 'home':
             atualizaVagas()
-            userLogado.tipo === 'Colaborador' ? document.getElementById('buttonCadastrar').style.display = 'none' : document.getElementById('buttonCadastrar').style.display = 'block'
+            if (userLogado.tipo === 'Colaborador') {
+                document.getElementById('buttonCadastrar').style.display = 'none'
+                document.getElementById('homeButtons').classList.add('centraliza')
+            } else {
+                document.getElementById('buttonCadastrar').style.display = 'block'
+                document.getElementById('homeButtons').classList.remove('centraliza')
+            }
             home.style.display = 'flex'
             break;
         case 'detalhes':
             detalhes.style.display = 'flex'
             break;
         case 'cadastroVaga':
+            limpaCampos()
             cadastroVaga.style.display = 'flex'
             break;
     }
@@ -409,6 +422,4 @@ mudaTela('login')
 
 
 
-// NÃO PODE CANCELAR CANDIDATURA APÓS REPROVADO.
 // VALIDAÇÕES DE CAMPOS
-// ALINHAR BOTÕES.
