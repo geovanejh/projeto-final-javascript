@@ -43,6 +43,86 @@ class Vaga {
     }
 }
 
+class Validacoes {
+    erro;
+
+    ehVazio(param) {
+        if (param) {
+            return false
+        } else {
+            this.erro = `Os campos não podem ficar vazios`
+            return true
+        }
+    }
+
+    ehSalarioInvalido(param) {
+        if (isNaN(param)) {
+            this.erro = `O salário digitado é inválido.`
+            return true
+        } else {
+            if (param < 1212) {
+                this.erro = `O salário não pode ser menor do que o salário mínimo nacional.`
+                return true
+            }
+        }
+        return false
+    }
+
+    emailEhValido(email) {
+        const emailSeparadoPorArroba = email.split('@');
+        const possuiUmArroba = emailSeparadoPorArroba.length === 2;
+        const enderecoValido = email.indexOf('@') >= 3;
+
+        const dominioSeparado = possuiUmArroba ? emailSeparadoPorArroba[1].split('.') : [];
+
+        let dominioValido = dominioSeparado[0] ? dominioSeparado[0].length >= 3 : false;
+        dominioValido = dominioValido && dominioSeparado.every(cd => cd.length >= 2);
+        dominioValido = dominioValido && (dominioSeparado.length === 2 || dominioSeparado.length === 3);
+
+        if (!possuiUmArroba || !enderecoValido || !dominioValido) {
+            this.erro = `O email informado é inválido.`
+        }
+        return possuiUmArroba && enderecoValido && dominioValido;
+    }
+
+    senhaValida(senha) {
+        const caracteresSenha = senha.split('');
+        const possuiNumero = caracteresSenha.some(caracter => !isNaN(parseInt(caracter)));
+
+        const letras = caracteresSenha.filter(caracter => caracter.toLowerCase() !== caracter.toUpperCase());
+        const possuiLetraMinuscula = letras.some(caracter => caracter !== caracter.toUpperCase());
+        const possuiLetraMaiuscula = letras.some(caracter => caracter !== caracter.toLowerCase());
+
+        const possuiCaracterEspecial = caracteresSenha.some(caracter => {
+            return isNaN(parseInt(caracter)) && caracter.toLowerCase() === caracter.toUpperCase();
+        });
+
+        const possuiOitoCaracteres = senha.length >= 8;
+
+        this.erro = ''
+        this.erro = `A senha informada está incorreta: 
+        `
+        !possuiOitoCaracteres ? this.erro += `- A senha precisa ter ao menos 8 caracteres
+        ` : ''
+        !possuiNumero ? this.erro += `- A senha precisa ter pelo menos um número.
+        ` : ''
+        !possuiLetraMaiuscula ? this.erro += `- A senha precisa ter ao menos uma letra maiúscula
+        ` : ''
+        !possuiLetraMinuscula ? this.erro += `- A senha precisa ter ao menos uma letra minúscula
+        ` : ''
+        !possuiCaracterEspecial ? this.erro += `- A senha precisa ter ao menos um caracter especial
+        ` : ''
+
+        return possuiNumero
+            && possuiLetraMinuscula
+            && possuiLetraMaiuscula
+            && possuiCaracterEspecial
+            && possuiOitoCaracteres;
+    }
+}
+
+const valida = new Validacoes()
+
 const limpaCampos = () => {
     document.getElementById('email').value = ''
     document.getElementById('senha').value = ''
@@ -57,6 +137,10 @@ const limpaCampos = () => {
 
 const redefinirSenha = async () => {
     const email = prompt(`Digite o seu email`)
+    if (valida.ehVazio(email)) {
+        alert(valida.erro)
+        return
+    }
 
     try {
         const users = await axios.get(`${BASE_URL}/usuarios`);
@@ -64,12 +148,31 @@ const redefinirSenha = async () => {
             return e.email === email
         })
 
+        if (!user) {
+            alert(`O email não existe no sistema.`)
+            return;
+        }
         alert(`A senha é ${user.senha}`)
     }
     catch (e) {
         console.log(e);
     }
 
+}
+
+const adicionarMascaraData = () => {
+    const dataInput = document.getElementById('dataCadastro');
+    let data = dataInput.value.replaceAll(' ', '').replaceAll('/', '');
+    switch (data.length) {
+        case 3: case 4:
+            dataInput.value = `${data.substring(0, 2)}/${data.substring(2)}`;
+            break;
+        case 5: case 6: case 7: case 8:
+            dataInput.value = `${data.substring(0, 2)}/${data.substring(2, 4)}/${data.substring(4)}`;
+            break;
+        default:
+            dataInput.value = data;
+    }
 }
 
 const atualizaVagas = async () => {
@@ -255,26 +358,39 @@ const detalheVaga = async (vaga) => {
         const pNascimento = document.createElement('p')
         li.classList.add('candidato')
         const find = allUsers.find(u => u.id === e.idCandidato)
-        pUser.textContent = find.nome
-        pNascimento.textContent = find.dataNascimento
-        if (e.reprovado === true && userLogado.tipo === 'Colaborador' && e.idCandidato === userLogado.id) {
-            pUser.classList.add('candidato-reprovado')
-        }
+        if (find) {
+            console.log(find)
+            pUser.textContent = find.nome
+            let dataFormatada = find.dataNascimento.split('-')
+            console.log('dataFormatada=>', dataFormatada)
+            let ano = dataFormatada[0]
+            let mes = dataFormatada[1]
+            console.log(dataFormatada[2])
+            let dia = dataFormatada[2].substring(0, 2);
+            dataFormatada = `${dia}/${mes}/${ano}`
+            console.log('AQUI =>', dataFormatada)
 
-        li.append(pUser, pNascimento)
-        const buttonReprovar = document.createElement('button')
-        if (userLogado.tipo === 'Recrutador') {
-            if (e.reprovado === true) {
-                buttonReprovar.classList.add('reprovado-button')
-            } else {
-                buttonReprovar.classList.add('reprovar-button')
-                buttonReprovar.addEventListener('click', () => reprovaCandidato(vaga, e.idCandidato))
+            pNascimento.textContent = dataFormatada
+            if (e.reprovado === true && userLogado.tipo === 'Colaborador' && e.idCandidato === userLogado.id) {
+                pUser.classList.add('candidato-reprovado')
             }
-            buttonReprovar.textContent = 'Reprovar'
-            li.appendChild(buttonReprovar)
+
+            li.append(pUser, pNascimento)
+            const buttonReprovar = document.createElement('button')
+            if (userLogado.tipo === 'Recrutador') {
+                if (e.reprovado === true) {
+                    buttonReprovar.classList.add('reprovado-button')
+                } else {
+                    buttonReprovar.classList.add('reprovar-button')
+                    buttonReprovar.addEventListener('click', () => reprovaCandidato(vaga, e.idCandidato))
+                }
+                buttonReprovar.textContent = 'Reprovar'
+                li.appendChild(buttonReprovar)
+            }
+
+            ulPai.appendChild(li)
         }
 
-        ulPai.appendChild(li)
     })
 
     const divButtons = document.getElementById('detalhesButtons')
@@ -318,7 +434,13 @@ const detalheVaga = async (vaga) => {
 const cadastraVaga = async () => {
     const titulo = document.getElementById('tituloVaga').value
     const descricao = document.getElementById('descricaoVaga').value
-    const remuneracao = document.getElementById('remuneracaoVaga').value
+    let remuneracao = document.getElementById('remuneracaoVaga').value
+    if (valida.ehVazio(titulo) || valida.ehVazio(descricao) || valida.ehVazio(remuneracao) || valida.ehSalarioInvalido(remuneracao)) {
+        alert(valida.erro)
+        return
+    }
+
+    remuneracao = `R$ ${remuneracao}`
 
     const vaga = new Vaga(titulo, descricao, remuneracao)
 
@@ -338,6 +460,11 @@ const login = async (e) => {
     e.preventDefault()
     const email = document.getElementById('email').value
     const senha = document.getElementById('senha').value
+    if (valida.ehVazio(email) || valida.ehVazio(senha)) {
+        console.log(valida.erro)
+        alert(valida.erro)
+        return
+    }
 
     try {
         const users = await axios.get(`${BASE_URL}/usuarios`);
@@ -404,8 +531,36 @@ const cadastraColaborador = async (e) => {
     const data = document.getElementById('dataCadastro').value
     const email = document.getElementById('emailCadastro').value
     const senha = document.getElementById('senhaCadastro').value
+    if (valida.ehVazio(tipo) || valida.ehVazio(nome) || valida.ehVazio(data) || valida.ehVazio(email) || valida.ehVazio(senha) || !valida.emailEhValido(email) || !valida.senhaValida(senha)) {
+        alert(valida.erro)
+        return
+    }
 
-    const user = new Usuario(tipo, nome, data, email, senha)
+    let nomeAux = '';
+    for (let item of nome.toLowerCase().split(' ')) {
+        nomeAux += item[0].toUpperCase() + item.slice(1) + " "
+    }
+
+    const dataQuebrada = data.split('/')
+    let dataAux = new Date(dataQuebrada[2], dataQuebrada[1] - 1, dataQuebrada[0])
+    dataAux = dataAux.toISOString()
+
+    const user = new Usuario(tipo, nomeAux, dataAux, email, senha)
+
+    try {
+        const users = await axios.get(`${BASE_URL}/usuarios`);
+        allUsers = users.data
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+    for (item of allUsers) {
+        if (item.email === email) {
+            alert(`Email já cadastrado no sistema, tente outro.`)
+            return
+        }
+    }
 
     try {
         await axios.post(`${BASE_URL}/usuarios`, user);
@@ -419,7 +574,3 @@ const cadastraColaborador = async (e) => {
 }
 
 mudaTela('login')
-
-
-
-// VALIDAÇÕES DE CAMPOS

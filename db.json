@@ -2,166 +2,79 @@
   "usuarios": [
     {
       "tipo": "Colaborador",
-      "nome": "JOÃO",
-      "dataNascimento": "312321",
-      "email": "JOÃO1@EMAIL.COM",
-      "senha": "1",
-      "candidaturas": [],
+      "nome": "Geovane Jadiel Hartmann ",
+      "dataNascimento": "2002-03-29T03:00:00.000Z",
+      "email": "geovanehartmann@gmail.com",
+      "senha": "eE2@a11111",
+      "candidaturas": [
+        {
+          "idVaga": 1,
+          "idCandidato": 1,
+          "reprovado": false
+        }
+      ],
       "id": 1
     },
     {
-      "tipo": "Recrutador",
-      "nome": "MARIA",
-      "dataNascimento": "312321",
-      "email": "MARIA@EMAIL.COM",
-      "senha": "1",
+      "tipo": "Colaborador",
+      "nome": "Geovane Jadiel Hartmann ",
+      "dataNascimento": "2002-03-29T03:00:00.000Z",
+      "email": "colaborador@gmail.com",
+      "senha": "eE2@a11111",
       "candidaturas": [],
       "id": 2
     },
     {
       "tipo": "Colaborador",
-      "nome": "JOÃO3",
-      "dataNascimento": "312321",
-      "email": "JOÃO3@EMAIL.COM",
-      "senha": "1",
-      "candidaturas": [
-        {
-          "idVaga": 1,
-          "idCandidato": 3,
-          "reprovado": true
-        },
-        {
-          "idVaga": 3,
-          "idCandidato": 3,
-          "reprovado": false
-        }
-      ],
+      "nome": "Geovane Jadiel Hartmann ",
+      "dataNascimento": "2002-03-29T03:00:00.000Z",
+      "email": "geovanehartmann@gmail.com",
+      "senha": "EeE?@3adsa1",
+      "candidaturas": [],
       "id": 3
     },
     {
       "tipo": "Colaborador",
-      "nome": "JOÃO4",
-      "dataNascimento": "312321",
-      "email": "JOÃO4@EMAIL.COM",
-      "senha": "1",
-      "candidaturas": [
-        {
-          "idVaga": 4,
-          "idCandidato": 4,
-          "reprovado": false
-        },
-        {
-          "idVaga": 2,
-          "idCandidato": 4,
-          "reprovado": false
-        }
-      ],
+      "nome": "Geovane Jadiel Hartmann ",
+      "dataNascimento": "2002-03-29T03:00:00.000Z",
+      "email": "geovanehartmann@gmail.com",
+      "senha": "Edwadw@1@a",
+      "candidaturas": [],
       "id": 4
     },
     {
       "tipo": "Colaborador",
-      "nome": "JOÃO5",
-      "dataNascimento": "312321",
-      "email": "JOÃO5@EMAIL.COM",
-      "senha": "1",
+      "nome": "Geovane Jadiel Hartmann ",
+      "dataNascimento": "2002-03-29T03:00:00.000Z",
+      "email": "geovanehartmann@gmail.com",
+      "senha": "allUsers = users.data1",
       "candidaturas": [],
       "id": 5
     },
     {
-      "tipo": "Colaborador",
-      "nome": "JOÃO6",
-      "dataNascimento": "312321",
-      "email": "JOÃO6@EMAIL.COM",
-      "senha": "1",
-      "candidaturas": [
-        {
-          "idVaga": 3,
-          "idCandidato": 6,
-          "reprovado": false
-        },
-        {
-          "idVaga": 1,
-          "idCandidato": 6,
-          "reprovado": true
-        }
-      ],
-      "id": 6
-    },
-    {
-      "tipo": "",
-      "nome": "",
-      "dataNascimento": "",
-      "email": "",
-      "senha": "",
+      "tipo": "Recrutador",
+      "nome": "Recrutador ",
+      "dataNascimento": "0200-03-29T03:06:28.000Z",
+      "email": "recrutador@gmail.com",
+      "senha": "allUsers = users.dat1a",
       "candidaturas": [],
-      "id": 7
+      "id": 6
     }
   ],
   "vagas": [
     {
-      "titulo": "TESTE UM",
-      "remuneracao": "1800",
-      "candidatos": [
-        {
-          "idCandidato": 6,
-          "reprovado": true
-        },
-        {
-          "idCandidato": 3,
-          "reprovado": true
-        }
-      ],
-      "descricao": "DESCRIÇÃO UM",
-      "id": 1
-    },
-    {
-      "titulo": "TESTE 2",
-      "remuneracao": "1800",
-      "candidatos": [
-        {
-          "idCandidato": 4,
-          "reprovado": false
-        }
-      ],
-      "descricao": "DESCRIÇÃO UM",
-      "id": 2
-    },
-    {
-      "titulo": "TESTE 3",
-      "remuneracao": "1800",
-      "candidatos": [
-        {
-          "idCandidato": 6,
-          "reprovado": false
-        },
-        {
-          "idCandidato": 3,
-          "reprovado": false
-        }
-      ],
-      "descricao": "DESCRIÇÃO UM",
-      "id": 3
+      "titulo": "1111111",
+      "remuneracao": "R$ 1250",
+      "candidatos": [],
+      "descricao": "2222222222",
+      "id": 12
     },
     {
       "titulo": "TESTE",
-      "remuneracao": "TESTE",
+      "remuneracao": "R$ 1540",
       "candidatos": [],
-      "descricao": "TESTE",
-      "id": 4
-    },
-    {
-      "titulo": "",
-      "remuneracao": "",
-      "candidatos": [],
-      "descricao": "2222222222",
-      "id": 5
-    },
-    {
-      "titulo": "",
-      "remuneracao": "",
-      "candidatos": [],
-      "descricao": "",
-      "id": 6
+      "descricao": "TESTE DESCRIÇÃO",
+      "id": 13
     }
   ],
   "candidaturas": []
