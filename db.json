@@ -1,106 +1,140 @@
 {
   "usuarios": [
     {
-      "nome": "João",
+      "tipo": "Colaborador",
+      "nome": "JOÃO",
+      "dataNascimento": "312321",
+      "email": "JOÃO1@EMAIL.COM",
+      "senha": "1",
+      "candidaturas": [],
       "id": 1
     },
     {
       "tipo": "Recrutador",
-      "nome": "Geovane Jadiel Hartmann",
-      "dataNascimento": "29032002",
-      "email": "geovanehartmann@gmail.com",
-      "senha": "123456",
+      "nome": "MARIA",
+      "dataNascimento": "312321",
+      "email": "MARIA@EMAIL.COM",
+      "senha": "1",
       "candidaturas": [],
       "id": 2
     },
     {
-      "tipo": "Recrutador",
-      "nome": "JOÃO SILVA",
-      "dataNascimento": "25032002",
-      "email": "joaosilva@email.com",
-      "senha": "987654",
-      "candidaturas": [],
+      "tipo": "Colaborador",
+      "nome": "JOÃO3",
+      "dataNascimento": "312321",
+      "email": "JOÃO3@EMAIL.COM",
+      "senha": "1",
+      "candidaturas": [
+        {
+          "idVaga": 3,
+          "idCandidato": 3,
+          "reprovado": true
+        }
+      ],
       "id": 3
     },
     {
       "tipo": "Colaborador",
-      "nome": "João Silva Santos",
-      "dataNascimento": "1",
-      "email": "joaosantos@gmail.com",
-      "senha": "123",
-      "candidaturas": [],
+      "nome": "JOÃO4",
+      "dataNascimento": "312321",
+      "email": "JOÃO4@EMAIL.COM",
+      "senha": "1",
+      "candidaturas": [
+        {
+          "idVaga": 4,
+          "idCandidato": 4,
+          "reprovado": false
+        },
+        {
+          "idVaga": 2,
+          "idCandidato": 4,
+          "reprovado": false
+        }
+      ],
       "id": 4
     },
     {
       "tipo": "Colaborador",
-      "nome": "33",
-      "dataNascimento": "33",
-      "email": "33",
-      "senha": "44",
-      "candidaturas": [
-        {
-          "idVaga": 1,
-          "idCandidato": 5,
-          "reprovado": false
-        },
-        {
-          "idVaga": 5,
-          "idCandidato": 5,
-          "reprovado": false
-        }
-      ],
+      "nome": "JOÃO5",
+      "dataNascimento": "312321",
+      "email": "JOÃO5@EMAIL.COM",
+      "senha": "1",
+      "candidaturas": [],
       "id": 5
     },
     {
-      "tipo": "",
-      "nome": "",
-      "dataNascimento": "",
-      "email": "44",
-      "senha": "55",
-      "candidaturas": [],
-      "id": 6
-    },
-    {
-      "tipo": "",
-      "nome": "",
-      "dataNascimento": "",
-      "email": "55",
-      "senha": "66",
-      "candidaturas": [],
-      "id": 7
-    },
-    {
       "tipo": "Colaborador",
-      "nome": "",
-      "dataNascimento": "",
-      "email": "11",
-      "senha": "22",
+      "nome": "JOÃO6",
+      "dataNascimento": "312321",
+      "email": "JOÃO6@EMAIL.COM",
+      "senha": "1",
       "candidaturas": [
         {
-          "idVaga": 6,
-          "idCandidato": 8,
+          "idVaga": 3,
+          "idCandidato": 6,
+          "reprovado": false
+        },
+        {
+          "idVaga": 1,
+          "idCandidato": 6,
           "reprovado": false
         }
       ],
-      "id": 8
-    },
-    {
-      "tipo": "Recrutador",
-      "nome": "JONAS",
-      "dataNascimento": "19",
-      "email": "20",
-      "senha": "20",
-      "candidaturas": [],
-      "id": 9
+      "id": 6
     }
   ],
   "vagas": [
     {
-      "titulo": "1111111",
-      "remuneracao": "3333",
-      "candidatos": [],
-      "descricao": "2222",
-      "id": 7
+      "titulo": "TESTE UM",
+      "remuneracao": "1800",
+      "candidatos": [
+        {
+          "idCandidato": 6,
+          "reprovado": false
+        }
+      ],
+      "descricao": "DESCRIÇÃO UM",
+      "id": 1
+    },
+    {
+      "titulo": "TESTE 2",
+      "remuneracao": "1800",
+      "candidatos": [
+        {
+          "idCandidato": 4,
+          "reprovado": false
+        }
+      ],
+      "descricao": "DESCRIÇÃO UM",
+      "id": 2
+    },
+    {
+      "titulo": "TESTE 3",
+      "remuneracao": "1800",
+      "candidatos": [
+        {
+          "idCandidato": 3,
+          "reprovado": true
+        },
+        {
+          "idCandidato": 6,
+          "reprovado": false
+        }
+      ],
+      "descricao": "DESCRIÇÃO UM",
+      "id": 3
+    },
+    {
+      "titulo": "TESTE 4",
+      "remuneracao": "1800",
+      "candidatos": [
+        {
+          "idCandidato": 4,
+          "reprovado": false
+        }
+      ],
+      "descricao": "DESCRIÇÃO UM",
+      "id": 4
     }
   ],
   "candidaturas": []

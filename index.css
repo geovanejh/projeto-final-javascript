@@ -283,3 +283,32 @@ label {
     display: flex;
     justify-content: center;
 }
+
+.reprovar-button {
+    background: #E53636;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    width: 166px;
+    padding: 8px 0;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.reprovado-button {
+    background: #A6A6A6;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    width: 166px;
+    padding: 8px 0;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.candidato-reprovado {
+    color: red !important;
+}

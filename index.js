@@ -173,8 +173,46 @@ const excluiVaga = async (vaga) => {
     mudaTela('home')
 }
 
+const reprovaCandidato = async (vaga, idCandidato) => {
+    console.log(vaga)
+    console.log(idCandidato)
+
+    vaga.candidatos.forEach(e => {
+        if (e.idCandidato === idCandidato) {
+            e.reprovado = true
+        }
+    })
+
+    const user = allUsers.find(e => e.id === idCandidato)
+
+    user.candidaturas.forEach(e => {
+        if (e.idVaga === vaga.id) {
+            e.reprovado = true;
+        }
+    })
+
+    try {
+        await axios.put(`${BASE_URL}/usuarios/${idCandidato}`, user);
+        console.log('Usuário editado com sucesso!');
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+    try {
+        await axios.put(`${BASE_URL}/vagas/${vaga.id}`, vaga);
+        console.log('Usuário editado com sucesso!');
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+    detalheVaga(vaga)
+}
+
 const detalheVaga = async (vaga) => {
-    mudaTela('detalhe')
+    console.log('vaga => ', vaga)
+    mudaTela('detalhes')
     console.log(vaga)
     const divDescricao = document.getElementById('divDescricaoVaga')
     divDescricao.textContent = ''
@@ -203,10 +241,11 @@ const detalheVaga = async (vaga) => {
     pData.textContent = `Data de Nascimento`
 
     liTitulo.append(pNome, pData)
+    if (userLogado.tipo === 'Recrutador') {
+        liTitulo.append(document.createElement('p'))
+    }
     liTitulo.classList.add('candidatos-title')
     ulPai.appendChild(liTitulo)
-
-
 
     vaga.candidatos.forEach(e => {
         const li = document.createElement('li')
@@ -214,10 +253,27 @@ const detalheVaga = async (vaga) => {
         const pNascimento = document.createElement('p')
         li.classList.add('candidato')
         const find = allUsers.find(u => u.id === e.idCandidato)
-        console.log(find)
         pUser.textContent = find.nome
         pNascimento.textContent = find.dataNascimento
+        if (e.reprovado === true && userLogado.tipo === 'Colaborador' && e.idCandidato === userLogado.id) {
+            pUser.classList.add('candidato-reprovado')
+        }
+
         li.append(pUser, pNascimento)
+        const buttonReprovar = document.createElement('button')
+        if (userLogado.tipo === 'Recrutador') {
+            console.log('E => ', e)
+            if (e.reprovado === true) {
+                buttonReprovar.classList.add('reprovado-button')
+            } else {
+                buttonReprovar.classList.add('reprovar-button')
+                buttonReprovar.addEventListener('click', () => reprovaCandidato(vaga, e.idCandidato))
+            }
+            buttonReprovar.textContent = 'Reprovar'
+            console.log(e)
+            li.appendChild(buttonReprovar)
+        }
+
         ulPai.appendChild(li)
     })
 
@@ -295,19 +351,6 @@ const login = async (e) => {
     }
 }
 
-// const mudaTela = (login, cadastro, home, detalheTrabalhador, detalheRecrutador, cadastroVaga) => {
-//     home === 'flex' ? atualizaVagas() : ''
-
-//     document.getElementById('loginPage').style.display = login
-//     document.getElementById('cadastroPage').style.display = cadastro
-//     document.getElementById('homePage').style.display = home
-//     document.getElementById('detalhes').style.display = detalheTrabalhador
-//     document.getElementById('detalhesTrabalhador').style.display = detalheRecrutador
-//     document.getElementById('cadastroVaga').style.display = cadastroVaga
-
-//     userLogado.tipo === 'Recrutador' ? document.getElementById('buttonCadastrar').style.display = 'flex' : document.getElementById('buttonCadastrar').style.display = 'none'
-// }
-
 const mudaTela = (tela) => {
     const login = document.getElementById('loginPage')
     const cadastro = document.getElementById('cadastroPage')
@@ -329,6 +372,7 @@ const mudaTela = (tela) => {
             break;
         case 'home':
             atualizaVagas()
+            userLogado.tipo === 'Colaborador' ? document.getElementById('buttonCadastrar').style.display = 'none' : document.getElementById('buttonCadastrar').style.display = 'block'
             home.style.display = 'flex'
             break;
         case 'detalhes':
@@ -362,3 +406,9 @@ const cadastraColaborador = async (e) => {
 }
 
 mudaTela('login')
+
+
+
+// NÃO PODE CANCELAR CANDIDATURA APÓS REPROVADO.
+// VALIDAÇÕES DE CAMPOS
+// ALINHAR BOTÕES.
