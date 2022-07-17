@@ -6,6 +6,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    list-style: none;
 }
 
 body>section {
@@ -24,6 +25,21 @@ select {
     border: 1px solid #000000;
     border-radius: 4px;
     padding: 0 10px 0 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: "▼";
+    font-size: 1rem;
+    top: 6px;
+    right: 10px;
+    position: absolute;
 }
 
 label {
@@ -107,7 +123,8 @@ label {
     width: 100%;
 }
 
-.cabecalho h1 {
+.cabecalho h1,
+.cabecalho h2 {
     color: white;
     font-weight: 600;
     font-size: 16px;
@@ -131,6 +148,7 @@ label {
 .rodape {
     margin-top: 28px;
     display: flex;
+    flex-direction: row !important;
     justify-content: space-between;
 }
 
@@ -158,4 +176,110 @@ label {
     padding: 8px 0;
     cursor: pointer;
     width: 166px;
+}
+
+#ulPai {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+#ulPai>li {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 16px 32px;
+}
+
+#ulPai>li:hover {
+    background-color: #E0E0E0;
+    cursor: pointer;
+}
+
+#ulPai>li>div {
+    display: flex;
+    gap: 4px;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+#ulPai>li>div>span {
+    font-weight: 600;
+
+}
+
+.descricao-vaga {
+    padding: 24px 32px;
+    margin: 0px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid #1A75C1;
+    border-radius: 8px;
+}
+
+.descricao-vaga span {
+    font-weight: 700;
+}
+
+.descricao-vaga p {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.cabecalho-detalhe-vaga {
+    display: flex;
+}
+
+.cabecalho-detalhe-vaga h2 {
+    margin-right: 200px;
+    padding-left: 30px;
+}
+
+.content>h1 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    margin: 34px 0;
+    text-align: center;
+}
+
+.candidatos-content {
+    border-right: 1px solid #004E8F;
+    border-left: 1px solid #004E8F;
+    border-radius: 4px 4px 0px 0px;
+    width: 900px;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.candidatos-title {
+    display: flex;
+    justify-content: space-between;
+    background-color: #004E8F;
+    padding: 14px 32px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.candidato {
+    padding: 18px 14px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #004E8F;
+}
+
+.teste {
+    display: flex;
+    justify-content: center;
 }

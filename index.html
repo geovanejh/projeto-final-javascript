@@ -16,7 +16,7 @@
                 <h1>Login do Sistema</h1>
             </div>
             <div class="login-content">
-                <form>
+                <form onsubmit="login(event)">
                     <label for="email">Email</label>
                     <input type="text" name="email" id="email">
                     <label for="senha">Senha</label>
@@ -26,8 +26,8 @@
             </div>
         </div>
         <div class="rodape-login">
-            <a href="#">Esqueceu a senha?</a>
-            <a href="#">Não possui cadastro?</a>
+            <a href="#" onclick="redefinirSenha()">Esqueceu a senha?</a>
+            <a href="#" onclick="mudaTela('cadastro')">Não possui cadastro?</a>
         </div>
     </section>
 
@@ -37,14 +37,14 @@
                 <h1>Cadastro</h1>
             </div>
             <div class="content">
-                <form>
+                <form onsubmit="cadastraColaborador(event)">
                     <div>
                         <label for="tipoCadastro">Tipo de Usuário</label>
-                        <select name="tipoCadastro" id="tipoCadastro">
-                            <option value="Trabalhador">Trabalhador</option>
-                            <option value="Recrutador">Recrutador</option>
-                            <option value="" selected></option>
-                        </select>
+                        <div class="select-wrapper"><select id="tipoCadastro" name="tipoCadastro">
+                                <option value="Colaborador">Colaborador</option>
+                                <option value="Recrutador">Recrutador</option>
+                                <option selected></option>
+                            </select></div>
                     </div>
                     <div>
                         <label for="nomeCadastro">Nome Completo*</label>
@@ -56,17 +56,17 @@
                     </div>
                     <div>
                         <label for="EmailCadastro">Email*</label>
-                        <input type="text" name="EmailCadastro" id="EmailCadastro">
+                        <input type="text" name="emailCadastro" id="emailCadastro">
                     </div>
                     <div>
                         <label for="senhaCadastro">Senha*</label>
                         <input type="password" name="senhaCadastro" id="senhaCadastro">
                     </div>
+                    <div class="rodape">
+                        <button class="secondary-button" type="button" onclick="mudaTela('login')">Voltar</button>
+                        <button class="primary-button" type="submit">Cadastrar</button>
+                    </div>
                 </form>
-                <div class="rodape">
-                    <button class="secondary-button">Voltar</button>
-                    <button class="primary-button">Cadastrar</button>
-                </div>
             </div>
         </div>
     </section>
@@ -77,43 +77,122 @@
                 <h1>Vagas</h1>
             </div>
             <div class="content">
-                <span>O CONTEÚDO VAI AQUI</span>
+
+                <ul id="ulPai">
+
+                </ul>
+
+                <button class="primary-button" onclick="mudaTela('login')">Sair</button>
+                <button class="primary-button" id="buttonCadastrar" onclick="mudaTela('cadastroVaga')">Cadastrar
+                    Vaga</button>
             </div>
+
         </div>
     </section>
 
-    <section id="detalhesRecrutador">
+    <section id="detalhes">
+        <div class="content-box">
+            <div class="cabecalho">
+                <h1>Detalhe da Vaga</h1>
+            </div>
+            <div class="content" id="contentDetalhe">
+                <div class="descricao-vaga" id="divDescricaoVaga">
+                </div>
+                <h1>Candidatos na Vaga</h1>
+                <div class="teste">
+                    <ul class="candidatos-content" id="vagaDescricaoPai">
+                    </ul>
+                </div>
+                <div class="detalhes-buttons" id="detalhesButtons">
+                </div>
+            </div>
+    </section>
+
+    <!-- <section id="detalhesTrabalhador">
         <div class="content-box">
             <div class="cabecalho">
                 <h1>Detalhe da Vaga</h1>
             </div>
             <div class="content">
-                <span>O CONTEÚDO VAI AQUI</span>
-            </div>
-        </div>
-    </section>
+                <div class="content">
 
-    <section id="detalhesTrabalhador">
-        <div class="content-box">
-            <div class="cabecalho">
-                <h1>Detalhe da Vaga</h1>
-            </div>
-            <div class="content">
-                <span>O CONTEÚDO VAI AQUI</span>
+                    <div class="descricao-vaga">
+                        <div>
+                            <h1>Título:</h1>
+                            <p>Desenvolvedor Full-Stack</p>
+                        </div>
+                        <div>
+                            <h1>Descrição:</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ipsum quaerat
+                                inventore
+                                vitae.</p>
+                        </div>
+                        <div>
+                            <h1>Remuneração:</h1>
+                            <p>R$ 5500</p>
+                        </div>
+                    </div>
+                    <h1>Candidatos na Vaga</h1>
+                    <div class="content-box">
+                        <div class="cabecalho cabecalho-detalhe-vaga">
+                            <h2>Nome</h2>
+                            <h2>Data de Nascimento</h2>
+                        </div>
+                        <div class="content">
+
+                            <div class="content listas-homepage candidatos-vagas">
+                                <div>
+                                    <div>
+                                        <p>Tiago Lucas</p>
+                                        <p>06/04/1994</p>
+                                        <button>Reprovar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="cadastroVaga">
         <div class="content-box">
             <div class="cabecalho">
                 <h1>Cadastro de Vaga</h1>
             </div>
+
             <div class="content">
-                <span>O CONTEÚDO VAI AQUI</span>
+                <form>
+                    <div>
+                        <label for="tituloVaga">Titulo*</label>
+                        <input type="text" name="tituloVaga" id="tituloVaga">
+                    </div>
+
+                    <div>
+                        <label for="descricaoVaga">Descrição*</label>
+                        <input type="text" name="descricaoVaga" id="descricaoVaga">
+                    </div>
+
+                    <div>
+                        <label for="remuneracaoVaga">Remuneração*</label>
+                        <input type="text" name="remuneracaoVaga" id="remuneracaoVaga">
+                    </div>
+                </form>
+                <div class="rodape">
+                    <button class="secondary-button" onclick="mudaTela('home')">Voltar</button>
+                    <button class="primary-button" onclick="cadastraVaga()">Cadastrar</button>
+                </div>
             </div>
+
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>
